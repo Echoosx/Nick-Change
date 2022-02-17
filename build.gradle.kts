@@ -17,5 +17,4 @@ repositories {
 
 dependencies {
     implementation("org.json:json:20211205")
-    compileOnly("org.echoosx.mirai.plugin:VFollowCheck:1.1.0")
 }

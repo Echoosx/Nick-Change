@@ -21,7 +21,6 @@ object NickChange : KotlinPlugin(
         version = "1.0.0"
     ) {
         author("Echoosx")
-        dependsOn("org.echoosx.mirai.plugin.VFollowCheck",true)
     }
 ) {
     override fun onEnable() {
