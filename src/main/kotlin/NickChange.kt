@@ -1,18 +1,15 @@
 package org.echoosx.mirai.plugin
 
-import kotlinx.coroutines.delay
 import net.mamoe.mirai.console.plugin.jvm.JvmPluginDescription
 import net.mamoe.mirai.console.plugin.jvm.KotlinPlugin
 import net.mamoe.mirai.event.GlobalEventChannel
 import net.mamoe.mirai.event.events.*
-import net.mamoe.mirai.message.data.At
 import net.mamoe.mirai.utils.info
 import org.echoosx.mirai.plugin.NickChangeConfig.administrator
 import org.echoosx.mirai.plugin.NickChangeConfig.availableGroup
 import org.echoosx.mirai.plugin.data.JoinRequest
 import org.echoosx.mirai.plugin.data.MemberJoinRequest
 import org.echoosx.mirai.plugin.data.MemberJoinRequest.memberJoinRequestRecord
-import org.echoosx.mirai.plugin.utl.getFollow
 
 object NickChange : KotlinPlugin(
     JvmPluginDescription(
@@ -54,18 +51,13 @@ object NickChange : KotlinPlugin(
                             if(nick != null) {
                                 // 修改名片
                                 member.nameCard = nick
-
-                                // 查成分
-                                val result = getFollow(nick)
-                                delay(1000)
-                                result?.let { it1 -> member.group.sendMessage(At(member) + "\n" + it1) }
                             }
                             break
                         }
                     }
                 }
             }catch (e:Throwable){
-                bot.getFriendOrFail(administrator).sendMessage("修改名片或查成分失败，${e.message}")
+                bot.getFriendOrFail(administrator).sendMessage("修改名片失败，${e.message}")
                 logger.error(e)
             }
         }
